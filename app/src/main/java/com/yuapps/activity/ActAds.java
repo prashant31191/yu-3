@@ -1,8 +1,9 @@
-package com.yuapps;
+package com.yuapps.activity;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.yuapps.R;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
