@@ -1,4 +1,4 @@
-package com.yuapps.activity;
+package com.yuapps.ui;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
