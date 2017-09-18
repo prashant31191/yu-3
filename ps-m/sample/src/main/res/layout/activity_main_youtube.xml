@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--android:fitsSystemWindows="true"-->
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:id="@+id/myCoordinator"
+    android:layout_height="match_parent">
+
+
+<!--
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="56dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_content_add"
+         />-->
+
+    <!--<android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:background="#b30"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d250"
+        android:fitsSystemWindows="true"
+        android:background="#b30"
+
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
+            <!-- app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
+            <ImageView
+                android:id="@+id/header"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="centerCrop"
+                android:background="#f0f"
+                android:src="@drawable/p_landscap"
+                app:layout_collapseMode="parallax" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <!--<android.support.design.widget.TabLayout
+                android:id="@+id/detail_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:translationY="450dp"
+                android:background="#5B00"
+                app:tabGravity="center" />-->
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/htab_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+   <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/messageView" />
+
+
+
+    <!--<android.support.v4.widget.NestedScrollView
+        android:id="@+id/myScrollingContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/messageView">
+
+        &lt;!&ndash;&lt;!&ndash; Your loooong scrolling content here &ndash;&gt;&ndash;&gt;
+        <TextView
+            android:text="@string/strData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textColor="#fff"
+
+            android:id="@+id/tvData" />
+
+
+    </android.support.v4.widget.NestedScrollView>-->
+   <!-- <com.cjj.MaterialRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/llMRefLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/llsearch"
+
+        app:overlay="true"
+        app:wave_show="true"
+        app:wave_color="#90ffffff"
+        app:progress_colors="@array/material_colors"
+        app:wave_height_type="higher"
+        >-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/btab_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+<!--</com.cjj.MaterialRefreshLayout>-->
+
+</android.support.design.widget.CoordinatorLayout>
+

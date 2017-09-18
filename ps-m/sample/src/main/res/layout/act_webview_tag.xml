@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+
+    android:layout_height="match_parent" >
+
+
+
+    <!--<WebView
+        android:id="@+id/wvMyWebdata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar" />-->
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:background="@color/primary"
+        android:layout_height="wrap_content"/>
+
+    <com.quinny898.library.persistentsearch.SearchBox
+        android:layout_width="wrap_content"
+        android:id="@+id/searchbox"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="-6dp"
+        android:layout_marginLeft="-6dp"
+        android:layout_marginRight="-6dp"
+        android:layout_marginBottom="-6dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <!--<GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        />-->
+    <com.youtube.utils.SpinnerLoading
+        android:id="@+id/slProgressbar"
+        android:background="#50001525"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+   <!-- <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/toolbar">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/toolbar"
+            android:orientation="vertical" >
+
+
+            <TextView
+                android:text="hello www.google.com link"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="35dp"
+                android:background="#690a"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:scrollbars="vertical"
+                android:textSize="5dp"
+                android:autoLink="web"
+                android:id="@+id/tvTagData" />
+            <!--
+            android:autoLink="web"
+
+            android:autoLink="web"
+
+            -->
+            <WebView
+                android:id="@+id/wvData"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#6990"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="#6990"
+                android:scrollbars="vertical"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/etTagData"
+                android:visibility="gone"
+                android:autoLink="web"/>
+
+
+            </LinearLayout>
+
+
+    <!--</ScrollView>-->
+
+</RelativeLayout>

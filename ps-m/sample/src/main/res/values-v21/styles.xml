@@ -1,0 +1,89 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar"></style>
+
+    <style name="RevealTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Base application theme. ...Theme.AppCompat.Light.DarkActionBar... -->
+    <!-- Base application theme.......Theme.AppCompat.Light.NoActionBar...@android:style/Theme.Holo.NoActionBar.Fullscreen....... -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:windowTranslucentStatus">false</item>
+
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/accent</item>
+
+    </style>
+
+    <style name="AppThemeFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+
+    <style name="AppTheme2" parent="BaseTheme">
+        <item name="android:colorControlHighlight">@color/accent_translucent</item> 
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/shared_element_curvemotion_enter
+        </item>
+        <item name="android:windowSharedElementReturnTransition">
+            @transition/shared_element_curvemotion_return
+        </item>
+        <item name="android:windowEnterTransition">@transition/activity_reveal_header</item>
+        <item name="android:windowReturnTransition">@transition/activity_return_avatar</item>
+
+    </style>
+
+    <style name="MyAppTheme2" parent="MyBaseTheme">
+
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/shared_element_curvemotion_enter
+        </item>
+        <item name="android:windowSharedElementReturnTransition">
+            @transition/shared_element_curvemotion_return
+        </item>
+        <item name="android:windowEnterTransition">@transition/activity_reveal_header</item>
+        <item name="android:windowReturnTransition">@transition/activity_return_avatar</item>
+
+    </style>
+
+    <style name="AvatarStyle" parent="CircleShapeStyle">
+        <item name="android:outlineProvider">background</item>
+    </style>
+
+
+
+    <style name="YouTubeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowActionBar">false</item>
+
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+
+</resources>

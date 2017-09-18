@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Wall Sen</string>
+    <string name="app_name2">Wall2 Sen</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Cloes</string>
+
+    <string name="strBrowerKey">AIzaSyDGDGk8ctTus1DCsWgldVeq2UaUwO7i4WM</string>
+    <!-- User another push notification =  AIzaSyBlh60Maj3ovvUTXyV03v4hNHyI2cyoH_8-->
+    <string name="strProjectId">vineyardphoto-1177</string>
+    <string name="strProjectName">vineyardPhoto</string>
+
+    <string name="user_cancelled">user_cancelled</string>
+    <string name="stop">stop</string>
+    <string name="start">start</string>
+
+
+    <string name="title_activity_profile">My Profile</string>
+    <string name="subtitle_activity_profile">Enhance your projects!</string>
+    <string name="title_activity_avatar_selection">Choose your Avatar</string>
+
+    <string name="transition_name">com.sen.xxx.SHARED_AVATAR</string>
+
+    <string name="tab_1">Recent</string>
+    <string name="tab_2">Comedy</string>
+    <string name="tab_3">Trailer</string>
+    <string name="tab_4">Songs</string>
+    <string name="tab_5">Search</string>
+
+    <string name="title_activity_menu_drawer">MenuDrawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="strData">
+
+        Tapping on a bottom navigation icon takes you directly to the associated view or refreshes the currently active view.
+
+Bottom navigation is primarily for use on mobile. To achieve a similar effect for desktop, use side navigation.
+Usage
+
+Three to five top-level destinations
+Destinations requiring direct access
+Color
+
+Tint the active icon with the app’s primary color. Use black or white if the bottom navigation bar is already colored.
+
+Specs
+
+Width of each action: The width of the view divided by the number of actions (with a max of 168dp and a minimum of 80dp)
+Height: 56dp
+Icon: 24 x 24dp
+
+        Usage
+
+Bottom navigation provides quick navigation between top-level views of an app. It is primarily designed for use on mobile.
+
+Larger displays, like desktop, may achieve a similar effect by using side navigation. For instance, the compact “rail” treatment displays navigational icons by default.
+
+    </string>
+
+
+
+
+
+    <string-array name="home_activities">
+        <item>FAB &amp; Toolbar Animation</item>
+        <item>Transparent Toolbar Test</item>
+        <item>Navigation Drawer</item>
+        <item>Toolbar Animation with Image</item>
+        <item>Material Style Tabs</item>
+        <item>Card View Toolbar</item>
+        <item>Quick Return Pattern</item>
+        <item>Reveal Animation</item>
+        <item>Gmail Style List with Bottom Sheet</item>
+        <item>Introductory View Pager</item>
+
+
+    </string-array>
+
+    <string-array name="home_activities_subtitle">
+        <item>G+ like on scroll hide animation</item>
+        <item>Overlaid transparent Toolbar</item>
+        <item>Material Design drawer with scrim</item>
+        <item>Using the new Support Design Library</item>
+        <item>Tab strip with Design Support Lib</item>
+        <item>Nested Toolbar in card</item>
+        <item>UI Pattern using Design Support Lib</item>
+        <item>Circular Reveal for pre Lollipop</item>
+        <item>Colored list icons with Bottom Sheets Google Maps style</item>
+        <item>Google style product tour</item>
+
+    </string-array>
+
+
+    <string name="str_something_went_wrong">Something went wrong. Please try again...!</string>
+
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="title_activity_test">TestActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Download">Download</string>
+    <string name="Error">Error</string>
+    <string name="Complete">Complete</string>
+    <string name="title_activity_app_detail">AppDetailActivity</string>
+
+
+</resources>

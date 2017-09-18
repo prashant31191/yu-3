@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- Layout container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:context=".ProfileActivity">
+
+        <!-- Our header -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:background="@color/primary">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title.Inverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/subtitle_activity_profile"/>
+
+        </FrameLayout>
+
+        <!-- Our Body -->
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:clipChildren="false"/>
+
+    </LinearLayout>
+
+    <!-- Our circle Avatar -->
+    <ImageButton
+        android:id="@+id/avatar"
+        style="@style/AvatarStyle"
+        android:layout_margin="@dimen/default_padding_margin"
+        android:transitionName="@string/transition_name"
+        app:layout_anchor="@id/content"
+        app:layout_anchorGravity="top|left|start"
+        tools:ignore="ContentDescription"/>
+
+</android.support.design.widget.CoordinatorLayout>
