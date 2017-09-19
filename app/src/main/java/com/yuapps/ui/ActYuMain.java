@@ -227,8 +227,10 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
     @Override
     public void onDownloadClick(String strData) {
         App.showLog("========Load Ads===="+strData);
+/*
         Intent intent=new Intent(ActYuMain.this,ActAds.class);
-        startActivity(intent);
+        startActivity(intent);*/
+
         //showInterstitial();
     }
 
