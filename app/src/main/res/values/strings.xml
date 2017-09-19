@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">yu-ap</string>
+    <string name="app_name">MyTube-02</string>
 
     <string name="action_settings">Settings</string>
 
@@ -11,4 +11,9 @@
         For more information, see https://support.google.com/admob/answer/3052638
     <!- -->
     <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="tab_1">tab-1</string>
+    <string name="tab_2">tab-2</string>
+    <string name="tab_3">tab-3</string>
+    <string name="tab_4">tab-4</string>
+    <string name="tab_5">tab-5</string>
 </resources>

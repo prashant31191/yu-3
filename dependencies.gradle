@@ -81,11 +81,11 @@ ext {
             */
             palette            : "com.android.support:palette-v7:${supportVersion}",
             cardView           : "com.android.support:cardview-v7:${supportVersion}",
-            gson               : "com.google.code.gson:gson:${gsonVersion}",
+           /* gson               : "com.google.code.gson:gson:${gsonVersion}",
             okHttp             : "com.squareup.okhttp:okhttp:${okHttpVersion}",
             retrofit           : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter  : "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
-            retrofitAdapter    : "com.squareup.retrofit2:adapter-rxjava:${retrofitAdapterVersion}",
+            retrofitAdapter    : "com.squareup.retrofit2:adapter-rxjava:${retrofitAdapterVersion}",*/
             /*picasso            : "com.squareup.picasso:picasso:${picassoVersion}",
             guava              : "com.google.guava:guava:${guavaVersion}",
             leakCanary         :"com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",

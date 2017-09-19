@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_movies"
+        icon="@drawable/ic_movie_filter_black_24dp"
+        title="Movies" />
+    <tab
+        id="@+id/tab_tv_serial"
+        icon="@drawable/ic_live_tv_black_24dp"
+        title="TV" />
+    <tab
+        id="@+id/tab_popular"
+        icon="@drawable/ic_youtube_searched_for_black_24dp"
+        title="Popular" />
+</tabs>

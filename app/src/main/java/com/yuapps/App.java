@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
 
 /*
 import com.popularmovies.vpaliy.popularmoviesapp.di.component.ApplicationComponent;
@@ -13,6 +14,10 @@ import com.popularmovies.vpaliy.popularmoviesapp.di.module.ApplicationModule;
 import com.popularmovies.vpaliy.popularmoviesapp.di.module.DataModule;
 */
 
+import com.yuapps.network.ApiService;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -28,6 +33,8 @@ public class App extends MultiDexApplication {
     private static App INSTANCE;
     private final static String ROBOTO_SLAB = "fonts/RobotoSlab-Regular.ttf";
 
+    public static final String strBaseUrl = "https://www.googleapis.com/youtube/v3/";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -41,8 +48,8 @@ public class App extends MultiDexApplication {
 
     @Override
     protected void attachBaseContext(Context base) {
-        //super.attachBaseContext(base);
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+        super.attachBaseContext(base);
+        //super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
         MultiDex.install(this);
     }
 
@@ -75,4 +82,33 @@ public class App extends MultiDexApplication {
         return applicationComponent;
     }
 */
+
+
+   public static Retrofit getRetrofit()
+   {
+      Retrofit retrofitApiCall = new Retrofit.Builder()
+               .baseUrl(App.strBaseUrl)
+               .addConverterFactory(GsonConverterFactory.create())
+               .build();
+
+      return retrofitApiCall;
+   }
+    public static ApiService getApiService()
+    {
+        ApiService apiService = getRetrofit().create(ApiService.class);
+        return apiService;
+    }
+
+    public static void showLog(Object o)
+    {
+        Log.d("===App-Show===","=====data===="+o.toString());
+    }
+
+
+    public static void showLog(Object o,Object o2)
+    {
+        Log.d("===App-Show==="+o.toString(),"=====data===="+o2.toString());
+    }
+
 }
+

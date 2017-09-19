@@ -4,8 +4,10 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.yuapps.R;
+import com.yuapps.ui.base.SplashActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -45,6 +47,11 @@ public class ActAds extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showInterstitial();
+
+                Intent intent=new Intent(ActAds.this,ActYuMain.class);
+                intent.putExtra("channelId","1111");
+                startActivity(intent);
+
             }
         });
 

@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 -->
-    <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">@color/mid_grey</color>
+    <color name="colorPrimary">#00695c</color>
+    <color name="colorPrimaryDark">#37474F</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorWhite">#ffffff</color>
@@ -60,6 +60,16 @@
     <color name="page_indicator_dark_selected">#ff333333</color>
     <color name="selected_comment_background">#ffffffff</color>
     <color name="error">#ffdd2c00</color>
+
+    <color name="primary_500">#80FF4081</color>
+    <color name="primary_700">#aadd2c00</color>
+
+    <color name="clrTab1">#dd2c00</color>
+    <color name="clrTab2">#42a5f5</color>
+    <color name="clrTab3">#ddcc00</color>
+    <color name="clrTab4">#dd2ccc</color>
+    <color name="clrTab5">#552ccc</color>
+    <color name="clrTab_BG">#e3e3e3</color>
 
 
 </resources>

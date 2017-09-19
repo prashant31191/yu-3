@@ -43,4 +43,14 @@
     <dimen name="shot_collapsed_app_bar_height">200dp</dimen>
     <dimen name="drag_dismiss_distance">112dp</dimen>
 
+    <dimen name="d250">250dp</dimen>
+    <dimen name="d5">5dp</dimen>
+    <dimen name="d7">7dp</dimen>
+    <dimen name="d8">8dp</dimen>
+    <dimen name="d10">10dp</dimen>
+    <dimen name="d12">12dp</dimen>
+    <dimen name="d15">15dp</dimen>
+    <dimen name="d18">18dp</dimen>
+    <dimen name="d23">23dp</dimen>
+
 </resources>
