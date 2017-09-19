@@ -14,6 +14,7 @@ import com.popularmovies.vpaliy.popularmoviesapp.di.module.DataModule;
 */
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Application
@@ -35,12 +36,13 @@ public class App extends MultiDexApplication {
         INSTANCE=this;
         mContext = getApplicationContext();
 
-
+        //configureDefaultFont();
     }
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
+        //super.attachBaseContext(base);
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
         MultiDex.install(this);
     }
 

@@ -15,7 +15,7 @@ public class SplashActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new Handler().postDelayed(()->{
-            Intent intent=new Intent(SplashActivity.this,MediaActivity.class);
+            Intent intent=new Intent(SplashActivity.this,ActAds.class);
             startActivity(intent);}, getResources().getInteger(R.integer.splashDuration));
     }
 }

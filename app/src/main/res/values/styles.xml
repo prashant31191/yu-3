@@ -8,4 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light" >
+        <item name="android:windowBackground">@drawable/app_logo</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@android:color/darker_gray</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="styFRobotoSlabReg" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/RobotoSlab-Regular.ttf</item>
+    </style><style name="styFFuturaReg" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/futura-regular.ttf</item>
+    </style>
+
 </resources>

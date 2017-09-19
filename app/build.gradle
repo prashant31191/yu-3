@@ -87,36 +87,54 @@ dependencies {
     compile ('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
         transitive = true;
     }
-    compile libs.chipsLover
+    /*compile libs.chipsLover*/
+
+    // for the custome font  -https://github.com/chrisjenx/Calligraphy/blob/master/README.md
     compile libs.calligraphy
+
     compile libs.constraintLayout
     compile libs.multiDex
-    compile libs.materialIconLib
-    compile libs.preferenceCompat7
+
+    //for the icons - https://github.com/prashant31191/material-icon-lib
+    //compile libs.materialIconLib
+
+    /*compile libs.preferenceCompat7*/
     compile libs.cardView
-    compile libs.expandableTextView
-    compile libs.leakCanary
+
+    //https://github.com/Blogcat/Android-ExpandableTextView
+    //compile libs.expandableTextView
+
+    //https://github.com/square/leakcanary
+    /*compile libs.leakCanary*/
     compile libs.recyclerView
     compile libs.supportDesign
     compile libs.supportAppCompat
-    compile libs.textDrawable
-    compile libs.circleImage
-    compile libs.ottoEventBus
+    //https://github.com/amulyakhare/TextDrawable
+    /*compile libs.textDrawable*/
+    //https://github.com/hdodenhof/CircleImageView
+    /*compile libs.circleImage*/
+
+    //http://square.github.io/otto/
+    /*compile libs.ottoEventBus*/
     compile libs.butterKnife
-    compile libs.Dagger2
-    compile libs.circleIndicator
+
+    /*compile libs.Dagger2*/
+
     compile libs.glide
-    compile libs.RxJava
+    /*compile libs.RxJava
     compile libs.RxAndroid
-    compile libs.circleIndicator
+    compile libs.circleIndicator*/
     compile libs.palette
-    compile libs.rxRelay
-    annotationProcessor libs.Dagger2Compiler
+    //https://github.com/JakeWharton/RxRelay
+    /*compile libs.rxRelay*/
+
+    /*annotationProcessor libs.Dagger2Compiler*/
     annotationProcessor libs.butterKnifeCompiler
-    provided libs.javaxAnnotation
+    /*provided libs.javaxAnnotation*/
 
     /* Testing Libraries */
     testCompile testLibs.mockito
     testCompile testLibs.espresso
     testCompile testLibs.jUnit
+    compile 'net.bytebuddy:byte-buddy:1.6.14'
 }

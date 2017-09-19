@@ -5,6 +5,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.yuapps.R;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ActAds extends AppCompatActivity {
     // Remove the below line after defining your own ad unit ID.
@@ -25,6 +28,11 @@ public class ActAds extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private TextView mLevelTextView;
 
+    //for the apply fonts
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
