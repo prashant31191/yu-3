@@ -21,6 +21,21 @@
             android:scrollbars="vertical"
             android:layout_below="@+id/svSearchVideos" />
 
+                <TextView
+                    android:id="@+id/tvLoading"
+                    android:layout_alignBottom="@+id/ivImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue_grey_900"
+                    android:textSize="15dp"
+                    android:text="Please wait...."
+                    android:padding="@dimen/d12"
+                    android:textAppearance="@style/styFRobotoSlabReg"
+                    android:background="#afff"
+                    android:layout_centerHorizontal="true"
+                    android:drawableLeft="@drawable/ic_sync_black_18dp"
+                    android:drawablePadding="@dimen/d8"
+                    />
 
 
         </RelativeLayout>

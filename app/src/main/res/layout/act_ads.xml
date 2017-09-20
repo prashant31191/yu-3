@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    >
 
     <!-- view for AdMob Interstitial Ad -->
     <TextView
@@ -10,7 +12,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="5dp"
-        android:text="@string/interstitial_ad_sample"
+        android:text="Please wait downloading..."
 
 
         android:textSize="25dp"
@@ -34,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="@string/interstitial_ad_sample"
+        android:text="Download video"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -54,5 +56,15 @@
         android:layout_centerVertical="true"
         android:text="@string/next_level"
         android:textAppearance="@style/styFFuturaReg"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/next_level_button"
+
         />
 </RelativeLayout>

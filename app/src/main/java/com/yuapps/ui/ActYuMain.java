@@ -8,77 +8,61 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.webkit.DownloadListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.yuapps.App;
 import com.yuapps.R;
-import com.yuapps.ui.base.SplashActivity;
-import com.yuapps.ui.fragments.YSearchFragment;
-import com.yuapps.ui.fragments.YSongsFragment;
-import com.yuapps.ui.fragments.YTrailerFragment;
+import com.yuapps.ui.fragments.SearchFragment;
+import com.yuapps.ui.fragments.TrailerFragment;
+import com.yuapps.ui.fragments.TvFragment;
 import com.yuapps.utils.IClickDownload;
 import com.yuapps.utils.NonSwipeableViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.widget.Toast;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ActYuMain extends AppCompatActivity implements IClickDownload{ // extends AppCompatActivity
+public class ActYuMain extends AppCompatActivity implements IClickDownload { // extends AppCompatActivity
 
     private TextView mMessageView;
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbar;
     ImageView header;
-    ViewPager btab_viewpager;
     NonSwipeableViewPager viewPager;
-    ProgressDialog customProgressDialog;
     BottomBar bottomBar;
-
-    private InterstitialAd mInterstitialAd;
-    AdRequest adRequest;
 
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main_youtube);
-
         mMessageView = (TextView) findViewById(R.id.messageView);
-        // customProgressDialog = new ProgressDialog(ActYuMain.this);
-     //  mBottomBar = BottomBar.attach(this, savedInstanceState);
-
-         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("Prince ");
-         header = (ImageView) findViewById(R.id.header);
+        header = (ImageView) findViewById(R.id.header);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
 
 
@@ -104,13 +88,13 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
         });
         setViewPagerData();
 
-         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-            //    messageView.setText(TabMessage.get(tabId, false));
-                App.showLog("=======setOnTabSelectListener=====","======onTabSelected===tabId==="+tabId);
+                //    messageView.setText(TabMessage.get(tabId, false));
+                App.showLog("=======setOnTabSelectListener=====", "======onTabSelected===tabId===" + tabId);
 
 
                 mMessageView.setText(getMessage(tabId, false));
@@ -119,7 +103,7 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
                 //111
                 //viewPager.setCurrentItem(bottomBar.getCurrentTabPosition());
 
-                App.showLog("====selectedPos==="+selectedPos);
+                App.showLog("====selectedPos===" + selectedPos);
                 viewPager.setCurrentItem(selectedPos);
             }
         });
@@ -128,104 +112,39 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
             @SuppressLint("LongLogTag")
             @Override
             public void onTabReSelected(@IdRes int tabId) {
-            App.showLog("=======setOnTabReselectListener=====","======onTabReSelected===tabId==="+tabId);
-                //    Toast.makeText(getApplicationContext(), TabMessage.get(tabId, true), Toast.LENGTH_LONG).show();
+                App.showLog("=======setOnTabReselectListener=====", "======onTabReSelected===tabId===" + tabId);
             }
         });
 
-
-        // Create the InterstitialAd and set the adUnitId (defined in values/strings.xml).
-        mInterstitialAd = newInterstitialAd();
-        adRequest = new AdRequest.Builder().setRequestAgent("android_studio:ad_template").build();
-        loadInterstitial();
-
-
     }
-
-
-    private InterstitialAd newInterstitialAd() {
-        InterstitialAd interstitialAd = new InterstitialAd(ActYuMain.this);
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-        interstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-
-            }
-
-            @Override
-            public void onAdClosed() {
-                // Proceed to the next level.
-                goToNextLevel();
-            }
-        });
-        return interstitialAd;
-    }
-
-    private void showInterstitial() {
-        // Show the ad if it's ready. Otherwise toast and reload the ad.
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            //Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
-            App.showLog("=====showInterstitial=======Ad did not load============");
-            goToNextLevel();
-        }
-    }
-
-    private void loadInterstitial() {
-        // Disable the next level button and load the ad.
-        mInterstitialAd.loadAd(adRequest);
-    }
-
-    private void goToNextLevel() {
-        // Show the next level and reload the ad to prepare for the level after.
-        mInterstitialAd = newInterstitialAd();
-        loadInterstitial();
-    }
-
-
-
-
-
 
     private void setViewPagerData() {
         viewPager = (NonSwipeableViewPager) findViewById(R.id.htab_viewpager);
         setupViewPager(viewPager);
     }
 
-    private void setupViewPager(ViewPager viewPager)
-    {
+    private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-      //  RecentFragment recentFragment =   new RecentFragment(getResources().getColor(R.color.clrTab1));
-       // YFunnyFragment yFunnyFragment =   new YFunnyFragment(getResources().getColor(R.color.clrTab2));
-
-        YTrailerFragment yTrailerFragment =   new YTrailerFragment(getResources().getColor(R.color.clrTab_BG));
-        YSongsFragment ySongsFragment =   new YSongsFragment(getResources().getColor(R.color.clrTab_BG));
-        YSearchFragment ySearchFragment =   new YSearchFragment(getResources().getColor(R.color.clrTab_BG));
-
-    //    adapter.addFrag(recentFragment,  getResources().getString(R.string.tab_1));
-        //adapter.addFrag(yFunnyFragment, getResources().getString(R.string.tab_2));
+        TrailerFragment yTrailerFragment = new TrailerFragment(getResources().getColor(R.color.clrTab_BG));
+        TvFragment ySongsFragment = new TvFragment(getResources().getColor(R.color.clrTab_BG));
+        SearchFragment ySearchFragment = new SearchFragment(getResources().getColor(R.color.clrTab_BG));
 
         adapter.addFrag(yTrailerFragment, getResources().getString(R.string.tab_3));
         adapter.addFrag(ySongsFragment, getResources().getString(R.string.tab_4));
         adapter.addFrag(ySearchFragment, getResources().getString(R.string.tab_5));
 
-
-     viewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            public void onPageScrollStateChanged(int state) {}
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrollStateChanged(int state) {
+            }
+
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
             public void onPageSelected(int position) {
                 // Check if this is the page you want.
-                bottomBar.selectTabAtPosition(position,false);
+                bottomBar.selectTabAtPosition(position, false);
 
             }
         });
@@ -237,16 +156,9 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
 
     @Override
     public void onDownloadClick(String strData, Activity activity) {
-        App.showLog("========Load Ads===="+strData);
-
-        Intent intent=new Intent(activity,ActAds.class);
+        App.showLog("========Load Ads====" + strData);
+        Intent intent = new Intent(activity, ActAds.class);
         activity.startActivity(intent);
-
-/*
-        Intent intent=new Intent(ActYuMain.this,ActAds.class);
-        startActivity(intent);*/
-
-        //showInterstitial();
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -280,16 +192,8 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
     }
 
 
+    int selectedPos = 0;
 
-
-
-
-
-
-
-
-
-int selectedPos = 0;
     private String getMessage(int menuItemId, boolean isReselection) {
         String message = "";
 
@@ -315,21 +219,24 @@ int selectedPos = 0;
         return message;
     }
 
-
-    /*@Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        // Necessary to restore the BottomBar's state, otherwise we would
-        // lose the current tab on orientation change.
-        bottomBar.onSaveInstanceState(outState);
-
-
-    }
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
-    protected void onDestroy() {
-        bottomBar.setOnMenuTabClickListener(null);
-        super.onDestroy();
-    }*/
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+    }
 }

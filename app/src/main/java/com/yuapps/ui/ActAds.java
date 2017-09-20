@@ -3,8 +3,10 @@ package com.yuapps.ui;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.yuapps.App;
 import com.yuapps.R;
 import com.yuapps.ui.base.SplashActivity;
+import com.yuapps.utils.Temp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,8 @@ public class ActAds extends AppCompatActivity {
     private Button mNextLevelButton;
     private InterstitialAd mInterstitialAd;
     private TextView mLevelTextView;
+    private TextView app_title2;
+    private ProgressBar progressBar2;
 
     //for the apply fonts
     @Override
@@ -42,21 +47,27 @@ public class ActAds extends AppCompatActivity {
 
         // Create the next level button, which tries to show an interstitial when clicked.
         mNextLevelButton = ((Button) findViewById(R.id.next_level_button));
+
+        // Create the text view to show the level number.
+        mLevelTextView = (TextView) findViewById(R.id.level);
+        app_title2 = (TextView) findViewById(R.id.app_title2);
+        progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
+
+
         mNextLevelButton.setEnabled(false);
+        progressBar2.setVisibility(View.VISIBLE);
         mNextLevelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showInterstitial();
 
-                Intent intent=new Intent(ActAds.this,ActYuMain.class);
+                /*Intent intent=new Intent(ActAds.this,ActYuMain.class);
                 intent.putExtra("channelId","1111");
-                startActivity(intent);
+                startActivity(intent);*/
 
             }
         });
 
-        // Create the text view to show the level number.
-        mLevelTextView = (TextView) findViewById(R.id.level);
         mLevel = START_LEVEL;
 
         // Create the InterstitialAd and set the adUnitId (defined in values/strings.xml).
@@ -64,7 +75,8 @@ public class ActAds extends AppCompatActivity {
         loadInterstitial();
 
         // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
-        Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
+       // Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
+        app_title2.setText("Please wait downloading...");
     }
 
 
@@ -89,18 +101,30 @@ public class ActAds extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    int i=0;
+
     private InterstitialAd newInterstitialAd() {
         InterstitialAd interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+        interstitialAd.setAdUnitId(Temp.adsAppIntId);
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 mNextLevelButton.setEnabled(true);
+                progressBar2.setVisibility(View.GONE);
+                app_title2.setText("Oops, Retry download...");
+                if(i==0)
+                {
+                    mNextLevelButton.performClick();
+                }
+                i = i +1;
+                App.showLog("=======i==ads=="+i);
             }
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 mNextLevelButton.setEnabled(true);
+                progressBar2.setVisibility(View.GONE);
+                app_title2.setText("Oops, Retry download...");
             }
 
             @Override
@@ -117,7 +141,7 @@ public class ActAds extends AppCompatActivity {
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
-            Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
             goToNextLevel();
         }
     }
@@ -125,14 +149,18 @@ public class ActAds extends AppCompatActivity {
     private void loadInterstitial() {
         // Disable the next level button and load the ad.
         mNextLevelButton.setEnabled(false);
+        progressBar2.setVisibility(View.VISIBLE);
+
         AdRequest adRequest = new AdRequest.Builder()
                 .setRequestAgent("android_studio:ad_template").build();
         mInterstitialAd.loadAd(adRequest);
+        app_title2.setText("Please wait downloading...");
     }
 
     private void goToNextLevel() {
         // Show the next level and reload the ad to prepare for the level after.
-        mLevelTextView.setText("Level " + (++mLevel));
+        mLevelTextView.setText("Attempt " + (++mLevel));
+        app_title2.setText("Please wait downloading...");
         mInterstitialAd = newInterstitialAd();
         loadInterstitial();
     }

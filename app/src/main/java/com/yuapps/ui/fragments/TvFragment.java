@@ -6,8 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,16 +16,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.yuapps.App;
 import com.yuapps.R;
-import com.yuapps.network.ApiService;
 import com.yuapps.network.model.SearchModel;
-import com.yuapps.ui.ActYouTubePlayer;
+import com.yuapps.ui.ActPlay;
 import com.yuapps.ui.ActYuMain;
 import com.yuapps.utils.IClickDownload;
 import com.yuapps.utils.Temp;
@@ -40,7 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class YSongsFragment extends android.support.v4.app.Fragment {
+public class TvFragment extends android.support.v4.app.Fragment {
     int color;
 
     Activity mActivity;
@@ -48,18 +44,19 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
     Bundle  bundle;
 
 
-    String Tag = "YTrailerFragment",pageToken="test";
+    String Tag = "TrailerFragment",pageToken="test";
 
     ArrayList<SearchModel.Items> arrayListItems ;
     RecyclerView recyclerView;
+    TextView tvLoading;
     YListAdapter adapter;
     int positionSelected = 0;
 
-    public YSongsFragment() {
+    public TvFragment() {
     }
 
     @SuppressLint("ValidFragment")
-    public YSongsFragment(int color) {
+    public TvFragment(int color) {
         this.color = color;
     }
 
@@ -67,12 +64,12 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_ytrailer, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         final FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.dummyfrag_bg);
         frameLayout.setBackgroundColor(color);
         recyclerView = (RecyclerView) view.findViewById(R.id.rvRecent);
-        //llMRefLayout = (MaterialRefreshLayout) view.findViewById(R.id.llMRefLayout);
+        tvLoading = (TextView) view.findViewById(R.id.tvLoading);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -81,7 +78,7 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
         mActivity = getActivity();
 
 
-        Log.i("--onCreateView--","==  YSongsFragment  ==");
+        Log.i("--onCreateView--","==  TvFragment  ==");
         setYTrailerDataApiCall();
         
         return view;
@@ -93,8 +90,18 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
 
-            Log.i("--setUserVisibleHint--","==  YSongsFragment  ==");
+            Log.i("--setUserVisibleHint--","==  TvFragment  ==");
             //setYTrailerDataApiCall();
+
+
+            if(adapter !=null && adapter.getItemCount() > 1)
+            {
+
+            }
+            else
+            {
+                setYTrailerDataApiCall();
+            }
         }
         else {
         }
@@ -124,6 +131,8 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
 
         Call call = App.getApiService().getSeachVideosTrailer(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, Temp.apiMaxResults);
         call.enqueue(callbackApi);
+        if(tvLoading !=null)
+        tvLoading.setVisibility(View.VISIBLE);
 
     }
 
@@ -133,6 +142,8 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
         @Override
         public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
             try {
+                if(tvLoading !=null)
+                tvLoading.setVisibility(View.GONE);
                 // customProgressDialog.dismiss();
                 SearchModel model = response.body();
                 if (model == null) {
@@ -221,7 +232,7 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(mActivity.getApplicationContext())
-                    .inflate(R.layout.raw_ytrailer_fragment, parent, false);
+                    .inflate(R.layout.raw_list_item, parent, false);
 
             return new ViewHolder(itemView);
         }
@@ -246,6 +257,8 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
 
                     Call call = App.getApiService().getSeachVideosTrailerNextPage(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, pageToken ,Temp.apiMaxResults);
                     call.enqueue(callbackApi);
+                    if(tvLoading !=null)
+                    tvLoading.setVisibility(View.VISIBLE);
 
                 }
 
@@ -268,7 +281,7 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.e("--click on image--","--video id--"+yTrailerModel_Items.getId().getVideoId());
-                        Intent intYouTubePlayerView = new Intent(mActivity, ActYouTubePlayer.class);
+                        Intent intYouTubePlayerView = new Intent(mActivity, ActPlay.class);
                         intYouTubePlayerView.putExtra("from", "ActSearchVidTitleList");
                         intYouTubePlayerView.putExtra("videoID", yTrailerModel_Items.getId().getVideoId());
                         mContext.startActivity(intYouTubePlayerView);

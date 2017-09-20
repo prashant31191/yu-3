@@ -46,7 +46,7 @@ public interface ApiService {
     //https://www.googleapis.com/youtube/v3/channels?
     // part=snippet&
     // forUsername=tseries&
-    // key=AIzaSyDGDGk8ctTus1DCsWgldVeq2UaUwO7i4WM&
+    // key=zzzzzzzzzzzzzzzzzzzz&
     // order=date&
     // maxResults=50
 
@@ -69,14 +69,14 @@ public interface ApiService {
     part=id&
     q=android%20studio%20live%20tv%20lolipop&
     type=video&
-    key=AIzaSyDGDGk8ctTus1DCsWgldVeq2UaUwO7i4WM&
+    key=zzzzzzzzzzzzzzzzzzzz&
     maxResults=20*/
 
-    //https://www.googleapis.com/youtube/v3/search?part=id&q=android&type=video&key=AIzaSyDGDGk8ctTus1DCsWgldVeq2UaUwO7i4WM&maxResults=20
+    //https://www.googleapis.com/youtube/v3/search?part=id&q=android&type=video&key=zzzzzzzzzzzzzzzzzzzz&maxResults=20
 
 
 
-    //https://www.googleapis.com/youtube/v3/search?part=snippet&q=android&type=video&key=AIzaSyDGDGk8ctTus1DCsWgldVeq2UaUwO7i4WM&maxResults=20
+    //https://www.googleapis.com/youtube/v3/search?part=snippet&q=android&type=video&key=zzzzzzzzzzzzzzzzzzzz&maxResults=20
 
     @GET("search")
     Call<SearchModel>  getSeachVideosTitle

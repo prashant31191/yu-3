@@ -16,7 +16,7 @@ import com.yuapps.R;
 
 import java.io.IOException;
 
-public class ActYouTubePlayer extends YouTubeBaseActivity{
+public class ActPlay extends YouTubeBaseActivity{
 
     private YouTubePlayerView playerView;
 

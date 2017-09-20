@@ -32,7 +32,7 @@
             android:label="@string/app_name"/>
 
         <activity
-            android:name=".ui.ActYouTubePlayer"
+            android:name=".ui.ActPlay"
             android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:screenOrientation="landscape" />

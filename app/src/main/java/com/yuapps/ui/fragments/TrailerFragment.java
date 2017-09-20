@@ -2,21 +2,18 @@ package com.yuapps.ui.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +21,7 @@ import com.google.gson.Gson;
 import com.yuapps.App;
 import com.yuapps.R;
 import com.yuapps.network.model.SearchModel;
-import com.yuapps.ui.ActYouTubePlayer;
+import com.yuapps.ui.ActPlay;
 import com.yuapps.ui.ActYuMain;
 import com.yuapps.utils.IClickDownload;
 import com.yuapps.utils.Temp;
@@ -36,39 +33,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by Admin on 6/30/2016.
- */
 
-
-
-public class YSearchFragment extends android.support.v4.app.Fragment {
+public class TrailerFragment extends android.support.v4.app.Fragment {
     int color;
 
     Activity mActivity;
-    ProgressDialog customProgressDialog;
+   // ProgressDialog customProgressDialog;
     Bundle  bundle;
 
-    
-    String Tag = "YTrailerFragment",pageToken="test";
+
+    String Tag = "TrailerFragment",pageToken="test";
 
     ArrayList<SearchModel.Items> arrayListItems ;
     RecyclerView recyclerView;
+    TextView tvLoading;
     YListAdapter adapter;
     int positionSelected = 0;
 
-    SearchView svSearchVideos;
-
-
-    //MaterialRefreshLayout llMRefLayout;
-
-
-
-    public YSearchFragment() {
+    public TrailerFragment() {
     }
 
     @SuppressLint("ValidFragment")
-    public YSearchFragment(int color) {
+    public TrailerFragment(int color) {
         this.color = color;
     }
 
@@ -76,13 +62,12 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_ytrailer, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         final FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.dummyfrag_bg);
         frameLayout.setBackgroundColor(color);
-         recyclerView = (RecyclerView) view.findViewById(R.id.rvRecent);
-        svSearchVideos = (SearchView) view.findViewById(R.id.svSearchVideos);
-        svSearchVideos.setVisibility(View.VISIBLE);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rvRecent);
+        tvLoading = (TextView) view.findViewById(R.id.tvLoading);
         //llMRefLayout = (MaterialRefreshLayout) view.findViewById(R.id.llMRefLayout);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
@@ -91,32 +76,9 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
 
         mActivity = getActivity();
 
-
-
-        svSearchVideos.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                arrayListItems = null;
-                adapter = null;
-                Temp.apiQ = query;
-                Call call = App.getApiService().getSeachVideosTrailer(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, Temp.apiMaxResults);
-                call.enqueue(callbackApi);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-
-        Log.i("--onCreateView--","==  YSearchFragment  ==");
+        Log.i("--onCreateView--","==  TvFragment  ==");
         setYTrailerDataApiCall();
-
-
-
+        
         return view;
     }
 
@@ -125,21 +87,31 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
+            Log.i("--setUserVisibleHint--","==  TvFragment  ==");
+           /* Log.i("--setUserVisibleHint--","==  TvFragment  ==");
+            setYTrailerDataApiCall();*/
 
-            Log.i("--setUserVisibleHint--","==  YSearchFragment  ==");
-            //setYTrailerDataApiCall();
+           if(adapter !=null && adapter.getItemCount() > 1)
+           {
+
+           }
+           else
+           {
+               setYTrailerDataApiCall();
+           }
         }
         else {
         }
     }
 
-
+    
 
     private void setYTrailerDataApiCall() {
 
         // customProgressDialog = new ProgressDialog(mActivity);
 
-       /* if (mActivity.getIntent() !=null && mActivity.getIntent().getExtras() !=null) {
+
+        /*if (mActivity.getIntent() !=null && mActivity.getIntent().getExtras() !=null) {
             bundle = mActivity.getIntent().getExtras();
 
             if (bundle !=null && bundle.getString("channelId") != null && bundle.getString("channelId").toString().length() > 1) {
@@ -147,22 +119,18 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
             }
         }*/
 
-        //methods.getSeachVideosTitle(part, q,  type,key, maxResults, callback);
-        if (arrayListItems != null && arrayListItems.size() > 2) {
-            Log.e("-apiCall-", "--there are some data---");
-            adapter = new YListAdapter(mActivity,arrayListItems);
-            recyclerView.setAdapter(adapter);
-        } else {
-            Temp.apiQ = "Latest";
-            Log.e("-apiCall-", "part-->" + Temp.apiPart + "--q-->" + Temp.apiQ + "--type-->" + Temp.apiType + "--key-->" + Temp.apiKey + "--maxResults-->" + Temp.apiMaxResults);
-
-            Call call = App.getApiService().getSeachVideosTrailer(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, Temp.apiMaxResults);
-            call.enqueue(callbackApi);
-
-            // customProgressDialog.show();
-        }
 
 
+        Temp.apiQ = "Latest Movie";
+        Log.e("-apiCall-", "part-->" + Temp.apiPart + "--q-->" + Temp.apiQ + "--type-->" + Temp.apiType + "--key-->" + Temp.apiKey + "--maxResults-->" + Temp.apiMaxResults);
+
+        // customProgressDialog.show();
+
+        Call call = App.getApiService().getSeachVideosTrailer(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, Temp.apiMaxResults);
+        call.enqueue(callbackApi);
+
+        if(tvLoading !=null)
+        tvLoading.setVisibility(View.VISIBLE);
 
     }
 
@@ -172,6 +140,8 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
         @Override
         public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
             try {
+                if(tvLoading !=null)
+                tvLoading.setVisibility(View.GONE);
                 // customProgressDialog.dismiss();
                 SearchModel model = response.body();
                 if (model == null) {
@@ -193,16 +163,9 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
                     App.showLog("==**==Success==**==new song==> ", new Gson().toJson(response.body()));
 
 
-                    Log.v(Tag, "Sucess---1");
-                    Log.v(Tag, "Response"+response.toString());
-
-
-                    if(model !=null && model.getNextPageToken() !=null)
-                    {
+                    if (model != null && model.getNextPageToken() != null) {
                         pageToken = model.getNextPageToken();
-                    }
-                    else
-                    {
+                    } else {
                         pageToken = "";
                     }
 
@@ -221,28 +184,21 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
                             Log.v(Tag, "Sucess---2-strData---" + strData);
                         }
                         */
-                        if(arrayListItems !=null && arrayListItems.size() > 3)
-                        {
+                        if (arrayListItems != null && arrayListItems.size() > 3) {
                             arrayListItems.addAll(model.getArrayListItems());
-                        }
-                        else
-                        {
+                        } else {
                             arrayListItems = new ArrayList<>();
                             arrayListItems = model.getArrayListItems();
                         }
 
-                        if(adapter !=null && adapter.getItemCount() > 3)
-                        {
+                        if (adapter != null && adapter.getItemCount() > 3) {
 
                             adapter.notifyDataSetChanged();
-                        }
-                        else
-                        {
-                            adapter = new YListAdapter(mActivity,arrayListItems);
+                        } else {
+                            adapter = new YListAdapter(mActivity, arrayListItems);
                             recyclerView.setAdapter(adapter);
                         }
                     }
-
 
 
                 }
@@ -262,10 +218,7 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
         }
     };
 
-
-
-int LastPositionAutoLoad = 40;
-
+    int LastPositionAutoLoad = 40;
 
     public class YListAdapter  extends RecyclerView.Adapter<YListAdapter.ViewHolder> {
 
@@ -279,7 +232,7 @@ int LastPositionAutoLoad = 40;
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(mActivity.getApplicationContext())
-                    .inflate(R.layout.raw_ytrailer_fragment, parent, false);
+                    .inflate(R.layout.raw_list_item, parent, false);
 
             return new ViewHolder(itemView);
         }
@@ -300,11 +253,35 @@ int LastPositionAutoLoad = 40;
                 {
                     Log.e("--SET data--","-SET-pageToken==="+pageToken);
                     positionSelected = position;
+                    Temp.apiQ = "New Song";
 
                     Call call = App.getApiService().getSeachVideosTrailerNextPage(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, pageToken ,Temp.apiMaxResults);
                     call.enqueue(callbackApi);
+                    if(tvLoading !=null)
+                    tvLoading.setVisibility(View.VISIBLE);
+
                 }
 
+            }
+
+            if( yTrailerModel_Items !=null && yTrailerModel_Items.getId() !=null && yTrailerModel_Items.getId().getVideoId()!=null) {
+                String strImgUrl = "https://i.ytimg.com/vi/" + yTrailerModel_Items.getId().getVideoId() + "/maxresdefault.jpg";
+                Glide.with(mContext).load(strImgUrl).placeholder(R.drawable.header).into(holder.ivImage);
+
+                holder.ivImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.e("--click on image--","--video id--"+yTrailerModel_Items.getId().getVideoId());
+                        Intent intYouTubePlayerView = new Intent(mActivity, ActPlay.class);
+                        intYouTubePlayerView.putExtra("from", "ActSearchVidTitleList");
+                        intYouTubePlayerView.putExtra("videoID", yTrailerModel_Items.getId().getVideoId());
+                        mContext.startActivity(intYouTubePlayerView);
+                    }
+                });
+            }
+            else
+            {
+                Log.e("No found","--title not found--");
             }
 
             holder.tvDownload.setOnClickListener(new View.OnClickListener() {
@@ -315,40 +292,6 @@ int LastPositionAutoLoad = 40;
 
                 }
             });
-
-            if( yTrailerModel_Items !=null && yTrailerModel_Items.getId() !=null && yTrailerModel_Items.getId().getVideoId()!=null) {
-                String strImgUrl = "https://i.ytimg.com/vi/" + yTrailerModel_Items.getId().getVideoId() + "/maxresdefault.jpg";
-                Glide.with(mContext).load(strImgUrl).placeholder(R.drawable.header).into(holder.ivImage);
-
-                holder.ivImage.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.e("--click on image--","--video id--"+yTrailerModel_Items.getId().getVideoId());
-                        Intent intYouTubePlayerView = new Intent(mActivity, ActYouTubePlayer.class);
-                        intYouTubePlayerView.putExtra("from", "ActSearchVidTitleList");
-                        intYouTubePlayerView.putExtra("videoID", yTrailerModel_Items.getId().getVideoId());
-                        mContext.startActivity(intYouTubePlayerView);
-                    }
-                });
-
-              /*  holder.ivImage.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        Log.e("--click on image long--", "--video id--" + yTrailerModel_Items.getId().getVideoId());
-                        Intent intYouTubePlayerView = new Intent(mActivity, ActWebviewTag.class);
-                        intYouTubePlayerView.putExtra("from", "ActSearchVidTitleList");
-                        intYouTubePlayerView.putExtra("channelId", yTrailerModel_Items.getId().getVideoId());
-                        intYouTubePlayerView.putExtra("title", yTrailerModel_Items.getSnippet().getVideoTitle());
-                        mContext.startActivity(intYouTubePlayerView);
-                        return true;
-                    }
-                });*/
-
-            }
-            else
-            {
-                Log.e("No found","--title not found--");
-            }
             //holder.year.setText(movie.getYear());
         }
 

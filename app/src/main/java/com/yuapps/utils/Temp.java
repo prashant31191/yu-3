@@ -13,6 +13,10 @@ public class Temp
     public static String apiMaxResults;*/
 
 
+
+
+    public static String adsAppIntId = "ca-app-pub-3940256099942544/1033173712";
+
     public static String apiKey = "AIzaSyDZhNxMtUQgSLLfyKIE0CxJi6ziI_mXRE4";
     public static String apiPart = "snippet";// for more details = "snippet,id";
     public static String apiQ = "andriod";

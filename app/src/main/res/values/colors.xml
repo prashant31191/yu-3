@@ -69,7 +69,7 @@
     <color name="clrTab3">#ddcc00</color>
     <color name="clrTab4">#dd2ccc</color>
     <color name="clrTab5">#552ccc</color>
-    <color name="clrTab_BG">#e3e3e3</color>
+    <color name="clrTab_BG">#fff5f5f5</color>
 
 
 </resources>
