@@ -74,6 +74,9 @@ public class YTrailerFragment extends android.support.v4.app.Fragment {
         recyclerView.setHasFixedSize(true);
 
         mActivity = getActivity();
+
+        Log.i("--onCreateView--","==  YSongsFragment  ==");
+        setYTrailerDataApiCall();
         
         return view;
     }
@@ -83,9 +86,9 @@ public class YTrailerFragment extends android.support.v4.app.Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-
             Log.i("--setUserVisibleHint--","==  YSongsFragment  ==");
-            setYTrailerDataApiCall();
+           /* Log.i("--setUserVisibleHint--","==  YSongsFragment  ==");
+            setYTrailerDataApiCall();*/
         }
         else {
         }
@@ -108,7 +111,7 @@ public class YTrailerFragment extends android.support.v4.app.Fragment {
 
 
 
-        Temp.apiQ = "Movie Trailer";
+        Temp.apiQ = "Latest Movie";
         Log.e("-apiCall-", "part-->" + Temp.apiPart + "--q-->" + Temp.apiQ + "--type-->" + Temp.apiType + "--key-->" + Temp.apiKey + "--maxResults-->" + Temp.apiMaxResults);
 
         // customProgressDialog.show();
@@ -268,7 +271,7 @@ public class YTrailerFragment extends android.support.v4.app.Fragment {
                 @Override
                 public void onClick(View v) {
                     IClickDownload iClickDownload = new ActYuMain();
-                    iClickDownload.onDownloadClick("0");
+                    iClickDownload.onDownloadClick("0",getActivity());
 
                 }
             });

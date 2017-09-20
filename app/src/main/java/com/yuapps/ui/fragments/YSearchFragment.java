@@ -112,6 +112,8 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
         });
 
 
+        Log.i("--onCreateView--","==  YSearchFragment  ==");
+        setYTrailerDataApiCall();
 
 
 
@@ -125,7 +127,7 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
         if (isVisibleToUser) {
 
             Log.i("--setUserVisibleHint--","==  YSearchFragment  ==");
-            setYTrailerDataApiCall();
+            //setYTrailerDataApiCall();
         }
         else {
         }
@@ -151,7 +153,7 @@ public class YSearchFragment extends android.support.v4.app.Fragment {
             adapter = new YListAdapter(mActivity,arrayListItems);
             recyclerView.setAdapter(adapter);
         } else {
-            Temp.apiQ = "latest";
+            Temp.apiQ = "Latest";
             Log.e("-apiCall-", "part-->" + Temp.apiPart + "--q-->" + Temp.apiQ + "--type-->" + Temp.apiType + "--key-->" + Temp.apiKey + "--maxResults-->" + Temp.apiMaxResults);
 
             Call call = App.getApiService().getSeachVideosTrailer(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, Temp.apiMaxResults);
@@ -309,7 +311,7 @@ int LastPositionAutoLoad = 40;
                 @Override
                 public void onClick(View v) {
                     IClickDownload iClickDownload = new ActYuMain();
-                    iClickDownload.onDownloadClick("0");
+                    iClickDownload.onDownloadClick("0",getActivity());
 
                 }
             });

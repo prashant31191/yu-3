@@ -1,6 +1,7 @@
 package com.yuapps.ui;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -109,11 +110,17 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
             @Override
             public void onTabSelected(@IdRes int tabId) {
             //    messageView.setText(TabMessage.get(tabId, false));
+                App.showLog("=======setOnTabSelectListener=====","======onTabSelected===tabId==="+tabId);
+
 
                 mMessageView.setText(getMessage(tabId, false));
-                //111
-                viewPager.setCurrentItem(bottomBar.getCurrentTabPosition());
                 collapsingToolbar.setTitle(getMessage(tabId, false));
+
+                //111
+                //viewPager.setCurrentItem(bottomBar.getCurrentTabPosition());
+
+                App.showLog("====selectedPos==="+selectedPos);
+                viewPager.setCurrentItem(selectedPos);
             }
         });
 
@@ -121,7 +128,7 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
             @SuppressLint("LongLogTag")
             @Override
             public void onTabReSelected(@IdRes int tabId) {
-            Log.i("=======setOnTabReselectListener=====","======onTabReSelected===tabId==="+tabId);
+            App.showLog("=======setOnTabReselectListener=====","======onTabReSelected===tabId==="+tabId);
                 //    Toast.makeText(getApplicationContext(), TabMessage.get(tabId, true), Toast.LENGTH_LONG).show();
             }
         });
@@ -199,15 +206,15 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
        // YFunnyFragment yFunnyFragment =   new YFunnyFragment(getResources().getColor(R.color.clrTab2));
 
         YTrailerFragment yTrailerFragment =   new YTrailerFragment(getResources().getColor(R.color.clrTab_BG));
-        YSearchFragment ySearchFragment =   new YSearchFragment(getResources().getColor(R.color.clrTab_BG));
         YSongsFragment ySongsFragment =   new YSongsFragment(getResources().getColor(R.color.clrTab_BG));
+        YSearchFragment ySearchFragment =   new YSearchFragment(getResources().getColor(R.color.clrTab_BG));
 
     //    adapter.addFrag(recentFragment,  getResources().getString(R.string.tab_1));
         //adapter.addFrag(yFunnyFragment, getResources().getString(R.string.tab_2));
 
         adapter.addFrag(yTrailerFragment, getResources().getString(R.string.tab_3));
-        adapter.addFrag(ySearchFragment, getResources().getString(R.string.tab_5));
         adapter.addFrag(ySongsFragment, getResources().getString(R.string.tab_4));
+        adapter.addFrag(ySearchFragment, getResources().getString(R.string.tab_5));
 
 
      viewPager.setAdapter(adapter);
@@ -222,11 +229,19 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
 
             }
         });
+
+
+        int limit = (adapter.getCount() > 1 ? adapter.getCount() - 1 : 1);
+        viewPager.setOffscreenPageLimit(limit);
     }
 
     @Override
-    public void onDownloadClick(String strData) {
+    public void onDownloadClick(String strData, Activity activity) {
         App.showLog("========Load Ads===="+strData);
+
+        Intent intent=new Intent(activity,ActAds.class);
+        activity.startActivity(intent);
+
 /*
         Intent intent=new Intent(ActYuMain.this,ActAds.class);
         startActivity(intent);*/
@@ -274,19 +289,22 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
 
 
 
-
+int selectedPos = 0;
     private String getMessage(int menuItemId, boolean isReselection) {
         String message = "";
 
         switch (menuItemId) {
             case R.id.tab_movies:
                 message += "Movie";
+                selectedPos = 0;
                 break;
             case R.id.tab_tv_serial:
                 message += "TV";
+                selectedPos = 1;
                 break;
             case R.id.tab_popular:
                 message += "Popular";
+                selectedPos = 2;
                 break;
         }
 
@@ -296,6 +314,7 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload{ // e
 
         return message;
     }
+
 
     /*@Override
     protected void onSaveInstanceState(Bundle outState) {

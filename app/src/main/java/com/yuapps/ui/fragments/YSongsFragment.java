@@ -79,6 +79,10 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
         recyclerView.setHasFixedSize(true);
 
         mActivity = getActivity();
+
+
+        Log.i("--onCreateView--","==  YSongsFragment  ==");
+        setYTrailerDataApiCall();
         
         return view;
     }
@@ -90,7 +94,7 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
         if (isVisibleToUser) {
 
             Log.i("--setUserVisibleHint--","==  YSongsFragment  ==");
-            setYTrailerDataApiCall();
+            //setYTrailerDataApiCall();
         }
         else {
         }
@@ -113,7 +117,7 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
 
 
 
-        Temp.apiQ = "New Song";
+        Temp.apiQ = "TV serial";
         Log.e("-apiCall-", "part-->" + Temp.apiPart + "--q-->" + Temp.apiQ + "--type-->" + Temp.apiType + "--key-->" + Temp.apiKey + "--maxResults-->" + Temp.apiMaxResults);
 
         // customProgressDialog.show();
@@ -251,7 +255,7 @@ public class YSongsFragment extends android.support.v4.app.Fragment {
                 @Override
                 public void onClick(View v) {
                     IClickDownload iClickDownload = new ActYuMain();
-                    iClickDownload.onDownloadClick("0");
+                    iClickDownload.onDownloadClick("0",getActivity());
 
                 }
             });
