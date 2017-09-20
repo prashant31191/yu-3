@@ -2,6 +2,8 @@ package com.yuapps.ui;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.yuapps.App;
 import com.yuapps.R;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +37,10 @@ public class ActAds extends AppCompatActivity {
     private TextView mLevelTextView;
     private TextView app_title2;
     private ProgressBar progressBar2;
+
+
+
+    private AdView mAdView;
 
     //for the apply fonts
     @Override
@@ -77,6 +84,68 @@ public class ActAds extends AppCompatActivity {
         // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
        // Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
         app_title2.setText("Please wait downloading...");
+
+        setDisplayBanner();
+    }
+
+    private void setDisplayBanner()
+    {
+
+
+        //String deviceid = tm.getDeviceId();
+
+        mAdView = new AdView(this);
+        mAdView.setAdSize(AdSize.BANNER);
+        mAdView.setAdUnitId(Temp.adsAppBnrId);
+
+        // Add the AdView to the view hierarchy. The view will have no size
+        // until the ad is loaded.
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.test);
+        layout.addView(mAdView);
+
+        // Create an ad request. Check logcat output for the hashed device ID to
+        // get test ads on a physical device.
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("33BE2250B43518CCDA7DE426D04EE232")
+                .build();
+        // Start loading the ad in the background.
+        mAdView.loadAd(adRequest);
+
+
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                App.showLog("Ads", "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                App.showLog("Ads", "onAdFailedToLoad");
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                App.showLog("Ads", "onAdOpened");
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                App.showLog("Ads", "onAdLeftApplication");
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when when the user is about to return
+                // to the app after tapping on an ad.
+                App.showLog("Ads", "onAdClosed");
+            }
+        });
     }
 
 
