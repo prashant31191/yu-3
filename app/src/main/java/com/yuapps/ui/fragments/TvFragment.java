@@ -253,7 +253,7 @@ public class TvFragment extends android.support.v4.app.Fragment {
                 {
                     Log.e("--SET data--","-SET-pageToken==="+pageToken);
                     positionSelected = position;
-                    Temp.apiQ = "New Song";
+                    Temp.apiQ = "English serial";
 
                     Call call = App.getApiService().getSeachVideosTrailerNextPage(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, pageToken ,Temp.apiMaxResults);
                     call.enqueue(callbackApi);

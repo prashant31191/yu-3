@@ -121,7 +121,7 @@ public class TrailerFragment extends android.support.v4.app.Fragment {
 
 
 
-        Temp.apiQ = "Latest Movie";
+        Temp.apiQ = "English Movie";
         Log.e("-apiCall-", "part-->" + Temp.apiPart + "--q-->" + Temp.apiQ + "--type-->" + Temp.apiType + "--key-->" + Temp.apiKey + "--maxResults-->" + Temp.apiMaxResults);
 
         // customProgressDialog.show();

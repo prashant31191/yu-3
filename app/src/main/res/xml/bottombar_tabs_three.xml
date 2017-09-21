@@ -11,5 +11,5 @@
     <tab
         id="@+id/tab_popular"
         icon="@drawable/ic_youtube_searched_for_black_24dp"
-        title="Popular" />
+        title="Song" />
 </tabs>

@@ -165,7 +165,7 @@ public class SearchFragment extends android.support.v4.app.Fragment {
             adapter = new YListAdapter(mActivity,arrayListItems);
             recyclerView.setAdapter(adapter);
         } else {
-            Temp.apiQ = "Latest";
+            Temp.apiQ = "English song";
             Log.e("-apiCall-", "part-->" + Temp.apiPart + "--q-->" + Temp.apiQ + "--type-->" + Temp.apiType + "--key-->" + Temp.apiKey + "--maxResults-->" + Temp.apiMaxResults);
 
             Call call = App.getApiService().getSeachVideosTrailer(Temp.apiPart, Temp.apiQ, Temp.apiType, Temp.apiKey, Temp.apiMaxResults);

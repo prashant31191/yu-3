@@ -207,7 +207,7 @@ public class ActYuMain extends AppCompatActivity implements IClickDownload { // 
                 selectedPos = 1;
                 break;
             case R.id.tab_popular:
-                message += "Popular";
+                message += "Song";
                 selectedPos = 2;
                 break;
         }
