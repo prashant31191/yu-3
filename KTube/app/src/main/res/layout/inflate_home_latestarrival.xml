@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/tvDownload"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="25dp"
                     android:alpha="0.8"
                     android:elevation="@dimen/d8"
                     android:src="@drawable/ic_play_circle_filled_black_24dp" />
@@ -93,22 +93,23 @@
 
                 <TextView
                     android:id="@+id/tvDownload"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/ivImg"
                     android:layout_alignParentRight="true"
-                    android:alpha="0.5"
-                    android:background="#ffffff"
-                    android:drawableLeft="@drawable/ic_cloud_download_black_18dp"
+                    android:background="#00ffffff"
+                    android:drawableLeft="@drawable/ic_file_download_red_500_36dp"
                     android:drawablePadding="@dimen/d5"
-                    android:padding="@dimen/d12"
-                    android:text="Download"
+                    android:padding="@dimen/d5"
+                    android:text=""
+                    android:alpha="0.8"
 
-                    android:textAppearance="@style/styFRobotoSlabReg"
                     android:textColor="@color/blue_grey_900"
                     android:textSize="12dp"
                     android:singleLine="true"
                     />
+                <!--android:textAppearance="@style/styFRobotoSlabReg"-->
+
             </RelativeLayout>
 
 

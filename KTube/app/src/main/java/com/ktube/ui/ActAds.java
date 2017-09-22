@@ -31,7 +31,7 @@ public class ActAds extends AppCompatActivity {
 
     private static final int START_LEVEL = 1;
     private int mLevel;
-    private Button mNextLevelButton;
+    protected Button mNextLevelButton;
     private InterstitialAd mInterstitialAd;
     private TextView mLevelTextView;
     private TextView app_title2;

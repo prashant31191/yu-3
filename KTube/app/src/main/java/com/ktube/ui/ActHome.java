@@ -1,6 +1,7 @@
 package com.ktube.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,10 +25,11 @@ import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ActHome extends AppCompatActivity {
+public class ActHome extends ActAds {
 
     String TAG = "ActHome";
 
+    SearchView svSearchVideos;
     OptionMenuAdapter optionMenuAdapter;
     RecyclerView recyclerView1, recyclerView2, recyclerView3, recyclerView4;
 
@@ -39,6 +42,7 @@ public class ActHome extends AppCompatActivity {
     ArrayList<HomeListModel> arrListSerial = new ArrayList<HomeListModel>();
     CListAdapter mCListAdapter;
 
+    TextView tvTag3,tvTag5,tvTag7;
 
 
 
@@ -73,6 +77,13 @@ public class ActHome extends AppCompatActivity {
             recyclerView2 = (RecyclerView) findViewById(R.id.recyclerView2);
             recyclerView3 = (RecyclerView) findViewById(R.id.recyclerView3);
             recyclerView4 = (RecyclerView) findViewById(R.id.recyclerView4);
+            svSearchVideos = (SearchView) findViewById(R.id.svSearchVideos);
+
+
+            tvTag3 = (TextView) findViewById(R.id.tvTag3);
+            tvTag5 = (TextView) findViewById(R.id.tvTag5);
+            tvTag7 = (TextView) findViewById(R.id.tvTag7);
+
 
             setRecyclerView1();
             setRecyclerView2();
@@ -89,6 +100,72 @@ public class ActHome extends AppCompatActivity {
 
     public void clickEvent(){
         try{
+            //ActSearch
+
+            svSearchVideos.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    String strKeyword = s.trim();
+                    App.showLog("==search==strKeyword ==="+strKeyword);
+
+                    if(strKeyword !=null && strKeyword .length() > 0) {
+
+                        mNextLevelButton.performClick();
+
+                        Intent intent = new Intent(ActHome.this, ActSearch.class);
+                        intent.putExtra("keyword", strKeyword);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"Please enter search text",Toast.LENGTH_SHORT).show();
+                    }
+
+
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
+
+
+            tvTag3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mNextLevelButton.performClick();
+                    Intent intent = new Intent(ActHome.this, ActSearch.class);
+                    intent.putExtra("keyword", "English movies");
+                    startActivity(intent);
+
+                }
+            });
+
+            tvTag5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mNextLevelButton.performClick();
+                    Intent intent = new Intent(ActHome.this, ActSearch.class);
+                    intent.putExtra("keyword", "English song");
+                    startActivity(intent);
+
+                }
+            });
+
+            tvTag7.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mNextLevelButton.performClick();
+                    Intent intent = new Intent(ActHome.this, ActSearch.class);
+                    intent.putExtra("keyword", "English serial");
+                    startActivity(intent);
+
+                }
+            });
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -143,7 +220,12 @@ public class ActHome extends AppCompatActivity {
                 versionViewHolder.tvOption.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(ActHome.this, "Click Event Left", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActHome.this, "Search for " + strOptionMenu[i], Toast.LENGTH_SHORT).show();
+
+                        mNextLevelButton.performClick();
+                        Intent intent = new Intent(ActHome.this, ActSearch.class);
+                        intent.putExtra("keyword", strOptionMenu[i]);
+                        startActivity(intent);
                     }
                 });
 
@@ -257,6 +339,13 @@ public class ActHome extends AppCompatActivity {
                 App.showLog("----AListAdapter----"+arrListMovies.get(i).productimg);
                 Glide.with(mContext).load(arrListMovies.get(i).productimg).into(versionViewHolder.ivImg);
 
+                versionViewHolder.tvDownload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mNextLevelButton.performClick();
+
+                    }
+                });
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -271,7 +360,7 @@ public class ActHome extends AppCompatActivity {
 
         class VersionViewHolder extends RecyclerView.ViewHolder {
             ImageView ivImg;
-            TextView tvProductName, tvCompanyName, tvRating, tvPrice;
+            TextView tvProductName, tvCompanyName, tvRating, tvPrice,tvDownload;
 
             public VersionViewHolder(View itemView) {
                 super(itemView);
@@ -282,6 +371,7 @@ public class ActHome extends AppCompatActivity {
                 tvCompanyName = (TextView) itemView.findViewById(R.id.tvCompanyName);
                 tvRating = (TextView) itemView.findViewById(R.id.tvRating);
                 tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+                tvDownload = (TextView) itemView.findViewById(R.id.tvDownload);
 
             }
 
@@ -378,7 +468,13 @@ public class ActHome extends AppCompatActivity {
                 App.showLog("----CListAdapter----"+arrListSerial.get(i).productimg);
                 Glide.with(mContext).load(arrListSerial.get(i).productimg).into(versionViewHolder.ivImg);
 
+                versionViewHolder.tvDownload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mNextLevelButton.performClick();
 
+                    }
+                });
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -392,7 +488,7 @@ public class ActHome extends AppCompatActivity {
 
         class VersionViewHolder extends RecyclerView.ViewHolder {
             ImageView ivImg;
-            TextView tvProductName, tvCompanyName, tvRating, tvPrice;
+            TextView tvProductName, tvCompanyName, tvRating, tvPrice,tvDownload;
 
             public VersionViewHolder(View itemView) {
                 super(itemView);
@@ -402,6 +498,7 @@ public class ActHome extends AppCompatActivity {
                 tvCompanyName = (TextView) itemView.findViewById(R.id.tvCompanyName);
                 tvRating = (TextView) itemView.findViewById(R.id.tvRating);
                 tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+                tvDownload = (TextView) itemView.findViewById(R.id.tvDownload);
 
             }
 
@@ -500,7 +597,13 @@ public class ActHome extends AppCompatActivity {
                 versionViewHolder.tvPrice.setText("$"+arrListSongs.get(i).price);
                 App.showLog("----BListAdapter----"+arrListSongs.get(i).productimg);
                 Glide.with(mContext).load(arrListSongs.get(i).productimg).into(versionViewHolder.ivImg);
+                versionViewHolder.tvDownload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mNextLevelButton.performClick();
 
+                    }
+                });
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -515,7 +618,7 @@ public class ActHome extends AppCompatActivity {
 
         class VersionViewHolder extends RecyclerView.ViewHolder {
             ImageView ivImg;
-            TextView tvProductName, tvCompanyName, tvRating, tvPrice;
+            TextView tvProductName, tvCompanyName, tvRating, tvPrice,tvDownload;
 
             public VersionViewHolder(View itemView) {
                 super(itemView);
@@ -526,6 +629,7 @@ public class ActHome extends AppCompatActivity {
                 tvCompanyName = (TextView) itemView.findViewById(R.id.tvCompanyName);
                 tvRating = (TextView) itemView.findViewById(R.id.tvRating);
                 tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+                tvDownload = (TextView) itemView.findViewById(R.id.tvDownload);
 
             }
 

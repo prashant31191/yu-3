@@ -90,13 +90,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue_grey_900"
                 android:textSize="15dp"
-                android:text="Download"
-                android:padding="@dimen/d12"
-                android:textAppearance="@style/styFRobotoSlabReg"
-                android:background="#d3d3d3"
+                android:text=""
+                android:padding="@dimen/d5"
                 android:layout_alignParentRight="true"
 
-                android:drawableLeft="@drawable/ic_cloud_download_black_18dp"
+                android:drawableLeft="@drawable/ic_file_download_red_500_36dp"
                 android:drawablePadding="@dimen/d8"
                 android:alpha="0.8"
                 />
