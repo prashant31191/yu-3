@@ -16,4 +16,71 @@
     <string name="tab_3">tab-3</string>
     <string name="tab_4">tab-4</string>
     <string name="tab_5">tab-5</string>
+
+    <string-array name="strArrMovie">
+        <item> o-qzvhPQjzM </item>
+        <item> HoofNAaQGGI </item>
+        <item> o-qzvhPQjzM </item>
+        <item> JlOuUp0lg4E </item>
+        <item> nCFI3itTIhw </item>
+        <item> XlW-TF3-LLk </item>
+        <item> q5S83GaVn5M </item>
+        <item> ZUY4q7LM8W4 </item>
+
+        <item> ZUY4q7LM8W4 </item>
+        <item> PcOMHAn4tu8 </item>
+        <item> PcOMHAn4tu8 </item>
+        <item> PcOMHAn4tu8 </item>
+        <item> gFFmnM7OrEw </item>
+        <item> TTSNN3h-5L4 </item>
+
+
+    </string-array>
+
+    <string-array name="strArrSong">
+        <item> kSTufAKzJFo </item>
+        <item> yiBSOK0C6mM </item>
+        <item> 83uA6kS_6LE </item>
+        <item> QYT8WYdPJYo </item>
+        <item> G0zam9k0QHE </item>
+        <item> YykjpeuMNEk </item>
+        <item> DkQRcjKTqiU </item>
+        <item> ZvC2ZVmNCKQ </item>
+        <item> OD2dWhF2zns </item>
+        <item> WqQMkGXWw6Y </item>
+        <item> ul5OW9S7gss </item>
+        <item> nRFcmlWk7XM </item>
+        <item> fFfOkV_UKdY </item>
+        <item> U0BJKQlegZM </item>
+        <item> tbXhvBUKN_Y </item>
+        <item> nJHc4jt9tG0 </item>
+        <item> tnurLu_DbMM </item>
+        <item> Q5PlBeZNqf4 </item>
+        <item> ul5OW9S7gss </item>
+        <item> WqQMkGXWw6Y </item>
+        <item> YykjpeuMNEk </item>
+    </string-array>
+
+    <string-array name="strArrTv">
+        <item> jKd1GgcRFGY </item>
+        <item> cslyPxzMLWg </item>
+        <item> q-qbBwwo7kc </item>
+        <item> nDzm7xrg7o0 </item>
+        <item> 2QxVs34u2Ps </item>
+        <item> oHa2xmKO8Fw </item>
+        <item> _KXmZKW_cag </item>
+        <item> 1XnMmMnopqo </item>
+
+        <item> xRTMsguD-So </item>
+        <item> N3ClojL560A </item>
+        <item> _RFTcoqSA5M </item>
+        <item> uFDol6yl2LE </item>
+        <item> vyysJt94As8 </item>
+        <item> a339H_aqXx0 </item>
+        <item> IUGa3kZH4NM </item>
+
+
+    </string-array>
+
+
 </resources>

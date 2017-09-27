@@ -12,7 +12,9 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.ktube.App;
 import com.ktube.R;
+import com.ktube.utils.Temp;
 
 
 import java.io.IOException;
@@ -29,11 +31,12 @@ public class ActPlay extends YouTubeBaseActivity{
         setContentView(R.layout.act_youtube_player);
 
         playerView = (YouTubePlayerView)findViewById(R.id.player_view);
-        playerView.initialize("Your API Key", new YouTubePlayer.OnInitializedListener() {
+        playerView.initialize(Temp.apiKey, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 if(!b){
                     String videoId = getIntent().getExtras().getString("videoID");
+                    App.showLog("=====videoId===>>"+videoId);
                     youTubePlayer.cueVideo(videoId);
                 }
             }

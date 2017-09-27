@@ -180,9 +180,11 @@ public class ActAds extends AppCompatActivity {
                 mNextLevelButton.setEnabled(true);
                 progressBar2.setVisibility(View.GONE);
                 app_title2.setText("Oops, Retry download...");
+
+
                 if(i==0)
                 {
-                    mNextLevelButton.performClick();
+                   // mNextLevelButton.performClick();
                 }
                 i = i +1;
                 App.showLog("=======i==ads=="+i);

@@ -30,6 +30,21 @@
             />
     </android.support.v7.widget.Toolbar>
 
+    <SearchView
+        android:id="@+id/svSearchVideos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/white"
+
+        android:queryHint="Video search here"
+        android:elevation="5dp"
+        app:iconifiedByDefault="false"
+
+        app:defaultQueryHint="Search here"
+
+        tools:ignore="MissingPrefix"
+        />
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -48,20 +63,7 @@
 
             </android.support.design.widget.AppBarLayout>
 -->
-            <SearchView
-                android:id="@+id/svSearchVideos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
 
-                android:queryHint="Video search here"
-                android:elevation="5dp"
-                app:iconifiedByDefault="false"
-
-                app:defaultQueryHint="Search here"
-
-                tools:ignore="MissingPrefix"
-                />
 
 
             <LinearLayout

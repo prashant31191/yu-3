@@ -22,6 +22,7 @@ import com.ktube.R;
 import com.ktube.network.model.HomeListModel;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -44,7 +45,9 @@ public class ActHome extends ActAds {
 
     TextView tvTag3,tvTag5,tvTag7;
 
-
+    String[] arrayMovie = null;
+    String[] arraySong = null;
+    String[] arrayTv = null;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -59,6 +62,11 @@ public class ActHome extends ActAds {
         try{
             initialize();
             clickEvent();
+
+            arrayMovie = getResources().getStringArray(R.array.strArrMovie);
+            arraySong = getResources().getStringArray(R.array.strArrSong);
+            arrayTv = getResources().getStringArray(R.array.strArrTv);
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -347,6 +355,21 @@ public class ActHome extends ActAds {
                     }
                 });
 
+                versionViewHolder.ivImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mNextLevelButton.performClick();
+
+                        Intent intYouTubePlayerView = new Intent(ActHome.this, ActPlay.class);
+                        intYouTubePlayerView.putExtra("from", "ActSearchVidTitleList");
+                        String randomStrVid = arrayMovie[new Random().nextInt(arrayMovie.length)];
+                        intYouTubePlayerView.putExtra("videoID", randomStrVid);
+                        mContext.startActivity(intYouTubePlayerView);
+
+                    }
+                });
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -475,6 +498,22 @@ public class ActHome extends ActAds {
 
                     }
                 });
+
+                versionViewHolder.ivImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mNextLevelButton.performClick();
+
+                        Intent intYouTubePlayerView = new Intent(ActHome.this, ActPlay.class);
+                        intYouTubePlayerView.putExtra("from", "ActSearchVidTitleList");
+                        String randomStrVid = arrayTv[new Random().nextInt(arrayTv.length)];
+                        intYouTubePlayerView.putExtra("videoID", randomStrVid);
+                        mContext.startActivity(intYouTubePlayerView);
+
+                    }
+                });
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -601,6 +640,20 @@ public class ActHome extends ActAds {
                     @Override
                     public void onClick(View v) {
                         mNextLevelButton.performClick();
+
+                    }
+                });
+
+                versionViewHolder.ivImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mNextLevelButton.performClick();
+
+                        Intent intYouTubePlayerView = new Intent(ActHome.this, ActPlay.class);
+                        intYouTubePlayerView.putExtra("from", "ActSearchVidTitleList");
+                        String randomStrVid = arraySong[new Random().nextInt(arraySong.length)];
+                        intYouTubePlayerView.putExtra("videoID", randomStrVid);
+                        mContext.startActivity(intYouTubePlayerView);
 
                     }
                 });
