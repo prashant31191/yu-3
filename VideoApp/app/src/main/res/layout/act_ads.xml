@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    >
+
+    <!-- view for AdMob Interstitial Ad -->
+    <TextView
+        android:id="@+id/app_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="5dp"
+        android:text="Please wait downloading..."
+
+
+        android:textSize="25dp"
+        android:textColor="#111"
+
+        android:paddingTop="150dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+
+        android:textAppearance="@style/styFRobotoSlabReg"
+
+
+        />
+<!--
+    fontPath="fonts/futura-regular.ttf"
+    tools:ignore="MissingPrefix"-->
+
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Download video"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_title"
+        android:layout_centerHorizontal="true"
+        android:text="@string/start_level"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/next_level_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/next_level"
+        android:textAppearance="@style/styFFuturaReg"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/next_level_button"
+
+        />
+
+    <RelativeLayout
+        android:id="@+id/test"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="#30000000"
+        android:minHeight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<ImageView
+    android:src="@drawable/ic_sync_black_18dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>
