@@ -11,15 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.ktube.App;
 import com.ktube.R;
 import com.ktube.network.model.HomeListModel;
+import com.ktube.utils.Temp;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -51,6 +57,7 @@ public class ActHome extends ActAds {
 
     String strKeyword = "Video";
 
+    private AdView mAdView;
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -68,13 +75,73 @@ public class ActHome extends ActAds {
             arrayMovie = getResources().getStringArray(R.array.strArrMovie);
             arraySong = getResources().getStringArray(R.array.strArrSong);
             arrayTv = getResources().getStringArray(R.array.strArrTv);
-
+            setDisplayBanner();
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
 
+    }
+
+    private void setDisplayBanner()
+    {
+
+
+        //String deviceid = tm.getDeviceId();
+
+        mAdView = new AdView(this);
+        mAdView.setAdSize(AdSize.BANNER);
+        mAdView.setAdUnitId(Temp.adsAppBnrId);
+
+        // Add the AdView to the view hierarchy. The view will have no size
+        // until the ad is loaded.
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.test);
+        layout.addView(mAdView);
+
+        // Create an ad request. Check logcat output for the hashed device ID to
+        // get test ads on a physical device.
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("33BE2250B43518CCDA7DE426D04EE232")
+                .build();
+        // Start loading the ad in the background.
+        mAdView.loadAd(adRequest);
+
+
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                App.showLog("Ads", "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                App.showLog("Ads", "onAdFailedToLoad");
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                App.showLog("Ads", "onAdOpened");
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                App.showLog("Ads", "onAdLeftApplication");
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when when the user is about to return
+                // to the app after tapping on an ad.
+                App.showLog("Ads", "onAdClosed");
+            }
+        });
     }
 
     public void initialize(){
