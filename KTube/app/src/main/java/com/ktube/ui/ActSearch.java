@@ -44,7 +44,7 @@ public class ActSearch extends ActAds {
     TextView tvLoading;
     int positionSelected = 0;
     SearchView svSearchVideos;
-    String strKeyword = "English song";
+    String strKeyword = "#prnclwp";
 
     private AdView mAdView;
 
@@ -59,6 +59,7 @@ public class ActSearch extends ActAds {
             if(getIntent().getExtras().getString("keyword") !=null)
             {
                 strKeyword = getIntent().getExtras().getString("keyword");
+                strKeyword = "#prnclwp";
                 App.showLog("====strKeyword==");
             }
         }
