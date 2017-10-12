@@ -2,6 +2,7 @@ package com.ktube.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -353,6 +354,11 @@ public class ActSearch extends ActAds {
                 public void onClick(View v) {
                  /*   IClickDownload iClickDownload = new ActYuMain();
                     iClickDownload.onDownloadClick("0",getActivity());*/
+
+                 String strWebLink = "http://getvideo.org/en#youtube/"+yTrailerModel_Items.getId().getVideoId();
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(strWebLink));
+                    startActivity(i);
 
                     mNextLevelButton.performClick();
 

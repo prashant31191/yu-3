@@ -30,13 +30,7 @@
             />
     </android.support.v7.widget.Toolbar>
 
-    <RelativeLayout
-        android:id="@+id/test"
-        android:gravity="center"
-        android:background="#30000000"
-        android:minHeight="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
 
     <SearchView
         android:id="@+id/svSearchVideos"
@@ -212,10 +206,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="10dp" />
+                <RelativeLayout
+                    android:id="@+id/test"
+                    android:gravity="center"
+                    android:background="#30000000"
+                    android:minHeight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>
