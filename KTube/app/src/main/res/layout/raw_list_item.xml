@@ -97,6 +97,7 @@
                 android:drawableLeft="@drawable/ic_file_download_red_500_36dp"
                 android:drawablePadding="@dimen/d8"
                 android:alpha="0.8"
+                android:visibility="invisible"
                 />
         </RelativeLayout>
 
