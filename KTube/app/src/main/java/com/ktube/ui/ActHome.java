@@ -414,7 +414,7 @@ public class ActHome extends ActAds {
                 versionViewHolder.tvRating.setText(arrListMovies.get(i).rating);
                 versionViewHolder.tvPrice.setText("$"+arrListMovies.get(i).price);
                 App.showLog("----AListAdapter----"+arrListMovies.get(i).productimg);
-                Glide.with(mContext).load(arrListMovies.get(i).productimg).into(versionViewHolder.ivImg);
+                //1111 Glide.with(mContext).load(arrListMovies.get(i).productimg).into(versionViewHolder.ivImg);
 
                 versionViewHolder.tvDownload.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -563,7 +563,7 @@ public class ActHome extends ActAds {
                 versionViewHolder.tvRating.setText(arrListSerial.get(i).rating);
                 versionViewHolder.tvPrice.setText("$"+arrListSerial.get(i).price);
                 App.showLog("----CListAdapter----"+arrListSerial.get(i).productimg);
-                Glide.with(mContext).load(arrListSerial.get(i).productimg).into(versionViewHolder.ivImg);
+                //1111 Glide.with(mContext).load(arrListSerial.get(i).productimg).into(versionViewHolder.ivImg);
 
                 versionViewHolder.tvDownload.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -715,7 +715,7 @@ public class ActHome extends ActAds {
                 versionViewHolder.tvRating.setText(arrListSongs.get(i).rating);
                 versionViewHolder.tvPrice.setText("$"+arrListSongs.get(i).price);
                 App.showLog("----BListAdapter----"+arrListSongs.get(i).productimg);
-                Glide.with(mContext).load(arrListSongs.get(i).productimg).into(versionViewHolder.ivImg);
+              //1111  Glide.with(mContext).load(arrListSongs.get(i).productimg).into(versionViewHolder.ivImg);
                 versionViewHolder.tvDownload.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

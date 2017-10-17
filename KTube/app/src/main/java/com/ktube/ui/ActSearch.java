@@ -349,6 +349,19 @@ public class ActSearch extends ActAds {
 
             }
 
+            holder.tvDesc.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    String strWebLink = "http://getvideo.org/en#youtube/"+yTrailerModel_Items.getId().getVideoId();
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(strWebLink));
+                    startActivity(i);
+
+                    mNextLevelButton.performClick();
+
+                    return true;
+                }
+            });
             holder.tvDownload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

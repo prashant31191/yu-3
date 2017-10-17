@@ -10,18 +10,20 @@
             android:id="@+id/ivImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/bg_img"
+
             android:scaleType="centerCrop"
             />
 
         <TextView
             android:id="@+id/tvTtile"
             android:text="@string/app_name"
-            android:alpha="0.4"
+            android:alpha="0.7"
+            android:background="#3000"
             android:textColor="@color/white"
-            android:layout_margin="@dimen/d23"
-            android:textSize="30dp"
-            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:typeface="serif"
+            android:layout_alignParentBottom="true"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
