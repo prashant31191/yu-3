@@ -191,6 +191,7 @@ public class ActHome extends ActAds {
                         mNextLevelButton.performClick();
 
                         Intent intent = new Intent(ActHome.this, ActSearch.class);
+                        //Intent intent = new Intent(ActHome.this, ActExoPlayer.class);
                         intent.putExtra("keyword", strKeyword);
                         startActivity(intent);
                     }
